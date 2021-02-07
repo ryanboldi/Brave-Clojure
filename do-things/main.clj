@@ -53,7 +53,7 @@
   (loop [index 0 result []]
     (if (= index number)
       result
-      (recur (inc index) (into result (matching-part part index))))))
+      (recur (inc index) (conj result (matching-part part index))))))
 
 (defn symmetrize-body-parts
   "Expects a seq of maps that have a :name and :size"
@@ -65,7 +65,4 @@
       (let [[part & remaining] remaining-asym-parts]
         (recur remaining
                (into final-body-parts
-                     (set (into (matching-parts part number) part))))))))
-
-
-(symmetrize-body-parts asym-hobbit-body-parts 3)`
+                     (set (conj (matching-parts part number) part))))))))
