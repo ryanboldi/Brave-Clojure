@@ -5,7 +5,6 @@
   (println "Hello world!"))
 
 ;Implement map using reduce
-
 (defn my_map
   "implements the map function using reduce"
   [func sequence]
@@ -15,3 +14,14 @@
           (seq sequence))))
 
 (my_map inc [1 2 3])
+
+;implement filter using reduce
+(defn my_filter
+  "implements the filter function using reduce"
+  [predicate_func sequence]
+  (seq (reduce (fn [good left]
+                 (if (predicate_func left)
+                   (into good [left])
+                   good))
+               []
+               (seq sequence))))
