@@ -11,8 +11,8 @@
   [func sequence]
   (reduce (fn [done left]
             (println done left)
-            (into done `(func left)))
+            (into done [(func left)]))
           []
-          sequence))
+          (seq sequence)))
 
-(my-map inc [1 2 3])
+(my_map inc [1 2 3])
