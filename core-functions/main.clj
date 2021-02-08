@@ -27,3 +27,12 @@
                (seq sequence))))
 
 (my_filter #(> % 3) [1 2 9 3 10 54]) ; => (9 10 54)
+
+;implement some using reduce
+(defn my_some
+  "implements some using reduce"
+  [predicate_func sequence]
+  (some identity (reduce (fn [good left]
+                   (into good [(predicate_func left)]))
+               []
+               (seq sequence))))
