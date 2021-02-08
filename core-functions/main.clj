@@ -10,8 +10,9 @@
   "implements the map function using reduce"
   [func sequence]
   (reduce (fn [done left]
-            (into done (func (take 1 left))))
+            (println done left)
+            (into done `(func left)))
           []
-          (seq sequence)))
+          sequence))
 
-(my_map inc [1 2 3 4 5])
+(map inc 3)
