@@ -1,4 +1,5 @@
 
-do-things/.calva/output-window/output.calva-repl
+**/output.calva-repl
 .clj-kondo/*
 .lsp/*
+
