@@ -9,11 +9,11 @@
   "implements the map function using reduce"
   [func sequence]
   (seq (reduce (fn [done left]
-            (into done [(func left)]))
-          []
-          (seq sequence))))
+                 (into done [(func left)]))
+               []
+               (seq sequence))))
 
-(my_map inc [1 2 3])
+(my_map inc [1 2 3]) ; => (2 3 4)
 
 ;implement filter using reduce
 (defn my_filter
@@ -25,3 +25,5 @@
                    good))
                []
                (seq sequence))))
+
+(my_filter #(> % 3) [1 2 9 3 10 54]) ; => (9 10 54)
