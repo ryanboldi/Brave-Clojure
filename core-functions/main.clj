@@ -36,3 +36,6 @@
                    (into good [(predicate_func left)]))
                []
                (seq sequence))))
+
+(my_some #(> % 3) [1 2 9 3 10 54]) ; => true
+(my_some #(and (> % 3) %) [1 2 9 3 10 54]) ; => 9
