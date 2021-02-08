@@ -9,10 +9,9 @@
 (defn my_map
   "implements the map function using reduce"
   [func sequence]
-  (reduce (fn [done left]
-            (println done left)
+  (seq (reduce (fn [done left]
             (into done [(func left)]))
           []
-          (seq sequence)))
+          (seq sequence))))
 
 (my_map inc [1 2 3])
