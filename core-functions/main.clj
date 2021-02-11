@@ -83,3 +83,13 @@
   (filter #(>= (:glitter-index %) minimum-glitter) records))
 
 (glitter-filter 3 (mapify (parse (slurp suspect_file))))
+
+;Exercise 1 
+ 
+(defn glitter-filter-namelist
+  [minimum-glitter records]
+  (map #(:name %) (filter #(>= (:glitter-index %) minimum-glitter) records)))
+
+(glitter-filter-namelist 3 (mapify (parse (slurp suspect_file))))
+
+
