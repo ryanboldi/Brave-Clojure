@@ -85,11 +85,21 @@
 (glitter-filter 3 (mapify (parse (slurp suspect_file))))
 
 ;Exercise 1 
- 
+
 (defn glitter-filter-namelist
   [minimum-glitter records]
   (map #(:name %) (filter #(>= (:glitter-index %) minimum-glitter) records)))
 
 (glitter-filter-namelist 3 (mapify (parse (slurp suspect_file))))
 
+;Exercise 2
 
+(defn append-to-suspectlist
+  [suspect-name suspect-glitter list-of-maps]
+  (into list-of-maps (assoc {} :name suspect-name :glitter-index suspect-glitter)))
+
+(append-to-suspectlist "Ryan Boldi" "45" (mapify (parse (slurp suspect_file))))
+
+;Exercise 3
+
+(def validation-map {:name identity, :glitter-index identity})
