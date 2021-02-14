@@ -11,8 +11,8 @@
   "Generates lazy sequence of triangular numbers"
   ([] (tri* 0 1))
   ([sum n]
-     (let [new-sum (+ sum n)]
-       (cons new-sum (lazy-seq (tri* new-sum (inc n)))))))
+   (let [new-sum (+ sum n)]
+     (cons new-sum (lazy-seq (tri* new-sum (inc n)))))))
 
 (def tri (tri*))
 
@@ -199,10 +199,10 @@
   "Waits for user to enter text and hit enter, then cleans the input"
   ([] (get-input ""))
   ([default]
-     (let [input (clojure.string/trim (read-line))]
-       (if (empty? input)
-         default
-         (clojure.string/lower-case input)))))
+   (let [input (clojure.string/trim (read-line))]
+     (if (empty? input)
+       default
+       (clojure.string/lower-case input)))))
 
 (defn characters-as-strings
   "Given a string, return a collection consisting of each individual
