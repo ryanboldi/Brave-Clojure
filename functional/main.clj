@@ -32,7 +32,7 @@
 ((comp inc inc inc +) 1 2 3 4) ; => 13
 
 
-; implement the assoc-in function
+;3: implement the assoc-in function
 (defn my-assoc-in
   [m [k & ks] v]
   (if (empty? ks)
@@ -41,3 +41,15 @@
 
 (assoc-in {} [:teams :team1 :leader :intelligence] 10) ; => {:teams {:team1 {:leader {:intelligence 10}}}}
 (my-assoc-in {} [:teams :team1 :leader :intelligence] 10) ; => {:teams {:team1 {:leader {:intelligence 10}}}}
+
+; 4: use update-in function
+
+(def classroom {:p1 {:name "ryan" :age 18} :p2 {:name "adam" :age 21}})
+(update-in classroom [:p1 :age] inc); => {:p1 {:name "ryan", :age 19}, :p2 {:name "adam", :age 21}}
+
+; 5: implement update-in function
+(defn my-update-in
+  [m ks f]
+  (assoc-in m ks (f (get-in m ks))))
+
+(my-update-in classroom [:p1 :age] inc); => {:p1 {:name "ryan", :age 19}, :p2 {:name "adam", :age 21}}
