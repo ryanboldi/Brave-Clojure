@@ -17,21 +17,20 @@
 (defmacro infix
   [infixed]
   (loop [index -1 correct infixed]
-    (println index (nth correct (inc index)) correct)
-    (if (= (inc index) (count correct))
+    (println index (count correct))
+    (if (= (count correct) 1)
       correct
       (if (= '* (nth correct (inc index)))
-        (do (println "NICE") (recur -1 (into (take index correct) (into (list (list (nth correct (inc index))
-                                                                                    (nth correct index)
-                                                                                    (nth correct (inc (inc index))))) (drop (+ index 3) correct)))))
+        (recur -1 (into (reverse (take index correct)) (into (list (list (nth correct (inc index))
+                                                                         (nth correct index)
+                                                                         (nth correct (inc (inc index))))) (drop (+ index 3) correct))))
         (if (and (not (some #{'*} correct)) (or (= '+ (nth correct (inc index))) (= '- (nth infixed (inc index)))))
           (recur -1 (into (take index correct) (into (list (list (nth correct (inc index))
                                                                  (nth correct index)
                                                                  (nth correct (inc (inc index))))) (drop (+ index 3) correct))))
           (recur (inc index) correct))))))
 
-
-(infix (1 * 2 + 4))
+(infix (1 * 4))
 
 (nth '(1 + 2) 1)
 
