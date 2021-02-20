@@ -19,7 +19,7 @@
   (loop [index -1 correct infixed]
     (println correct)
     (if (= (count correct) 1)
-      correct
+      (first correct)
       (if (= '* (nth correct (inc index)))
         (recur -1 (into (reverse (take index correct)) (into (list (list (nth correct (inc index))
                                                                          (nth correct index)
