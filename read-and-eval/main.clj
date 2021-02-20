@@ -16,18 +16,18 @@
 ; Mult -> add -> subtract
 (defmacro infix
   [infixed]
-  (loop [index -1 correct '()]
-    (println index (nth infixed (inc index)) correct)
-    (if (= (inc index) (count infixed))
+  (loop [index -1 correct infixed]
+    (println index (nth correct (inc index)) correct)
+    (if (= (inc index) (count correct))
       correct
-      (if (= '* (nth infixed (inc index)))
-        (do (println "NICE") (recur -1 (into correct (list (nth infixed (inc (inc index)))
-                                                           (nth infixed index)
-                                                           (nth infixed (inc index))))))
-        (if (and (not (some #{'*} infixed)) (or (= '+ (nth infixed (inc index))) (= '- (nth infixed (inc index)))))
-          (recur -1 (into correct (list (nth infixed (inc (inc index)))
-                                        (nth infixed (index))
-                                        (nth infixed (inc index)))))
+      (if (= '* (nth correct (inc index)))
+        (do (println "NICE") (recur -1 (into (take index correct) (into (list (list (nth correct (inc (inc index)))
+                                                                                    (nth correct index)
+                                                                                    (nth correct (inc index)))) (drop (+ index 3) correct)))))
+        (if (and (not (some #{'*} correct)) (or (= '+ (nth correct (inc index))) (= '- (nth infixed (inc index)))))
+          (recur -1 (into (take index correct) (into (list (list (nth correct (inc (inc index)))
+                                                                 (nth correct index)
+                                                                 (nth correct (inc index)))) (drop (+ index 3) correct))))
           (recur (inc index) correct))))))
 
 
@@ -35,3 +35,4 @@
 
 (nth '(1 + 2) 1)
 
+(into '(1 + 2) (into (list 1 2) (list 1 2)))
