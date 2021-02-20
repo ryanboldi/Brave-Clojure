@@ -17,7 +17,7 @@
 (defmacro infix
   [infixed]
   (loop [index -1 correct infixed]
-    (println index (count correct))
+    (println correct)
     (if (= (count correct) 1)
       correct
       (if (= '* (nth correct (inc index)))
@@ -30,8 +30,4 @@
                                                                  (nth correct (inc (inc index))))) (drop (+ index 3) correct))))
           (recur (inc index) correct))))))
 
-(infix (1 * 4))
-
-(nth '(1 + 2) 1)
-
-(into '(1 + 2) (into (list 1 2) (list 1 2)))
+(infix (1 * 4 + 1 * 5))
