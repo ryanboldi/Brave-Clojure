@@ -21,13 +21,13 @@
     (if (= (inc index) (count infixed))
       correct
       (if (= '* (nth infixed (inc index)))
-        (do (println "NICE") (into correct (list (nth infixed (inc (inc index)))
-                                                 (nth infixed index)
-                                                 (nth infixed (inc index)))))
-        (if (or (= '+ (nth infixed (inc index))) (= '- (nth infixed (inc index))))
-          (into correct (list (nth infixed (inc (inc index)))
-                              (nth infixed (index))
-                              (nth infixed (inc index))))
+        (do (println "NICE") (recur -1 (into correct (list (nth infixed (inc (inc index)))
+                                                           (nth infixed index)
+                                                           (nth infixed (inc index))))))
+        (if (and (not (some #{'*} infixed)) (or (= '+ (nth infixed (inc index))) (= '- (nth infixed (inc index)))))
+          (recur -1 (into correct (list (nth infixed (inc (inc index)))
+                                        (nth infixed (index))
+                                        (nth infixed (inc index)))))
           (recur (inc index) correct))))))
 
 
