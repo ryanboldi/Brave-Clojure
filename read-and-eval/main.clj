@@ -30,4 +30,4 @@
                                                                  (nth correct (inc (inc index))))) (drop (+ index 3) correct))))
           (recur (inc index) correct))))))
 
-(infix (1 + 2 * 3 + 5))
+(infix (1 - 2 * 3 - 8 * 9))
