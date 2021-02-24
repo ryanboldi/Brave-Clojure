@@ -56,7 +56,7 @@
 
 (macroexpand '(when-valid order-details order-details-validations my-error-name (println :success) (println :happy)))
 
-; implement or using a macro
+; exercise 2 -> implement or using a macro
 
 (defmacro my-or
   ([] false)
@@ -64,3 +64,5 @@
   ([x & next]
    `(let [or# ~x]
       (if or# or# (my-or ~@next)))))
+
+; exercise 3 -> attribute getter macro
