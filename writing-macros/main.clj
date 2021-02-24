@@ -44,5 +44,23 @@
      (if (empty? ~errors-name)
        ~@then-else)))
 
-(if-valid order-details order-details-validations "error" (println :success)
-(println :failure "error"))
+(if-valid order-details order-details-validations my-error-name (println :success)
+(println :failure my-error-name))
+
+(defmacro when-valid
+  "Handle validation more concisely"
+  [to-validate validations errors-name & then-statements]
+  `(let [~errors-name (validate ~to-validate ~validations)]
+     (when (empty? ~errors-name)
+       ~@then-statements)))
+
+(macroexpand '(when-valid order-details order-details-validations my-error-name (println :success) (println :happy)))
+
+; implement or using a macro
+
+(defmacro my-or
+  ([] false)
+  ([x] x)
+  ([x & next]
+   `(let [or# ~x]
+      (if or# or# (my-or ~@next)))))
