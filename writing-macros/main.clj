@@ -66,3 +66,20 @@
       (if or# or# (my-or ~@next)))))
 
 ; exercise 3 -> attribute getter macro
+
+(def character
+  {:name "Smooches McCutes"
+   :attributes {:intelligence 10
+                :strength 4
+                :dexterity 5}})
+
+(defmacro defattrs
+  ([])
+  ([name attr & rest]
+  `(do (defattrs ~@rest) (def ~name (comp ~attr :attributes)))))
+
+(defattrs c-int :intelligence 
+  d-int :dexterity
+  s-int :strength)
+
+(d-int character); => 5
